@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SP | Signature Plate</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f7f4ef;
+    color:#24201c;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    background:rgba(247,244,239,.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid #ddd5ca;
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    height:78px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+}
+
+.logo{
+    font-family:Georgia,serif;
+    font-size:30px;
+    font-weight:bold;
+    color:#8b4a2f;
+}
+
+.logo small{
+    display:block;
+    font-family:Arial;
+    font-size:8px;
+    letter-spacing:4px;
+    color:#777;
+    margin-top:-5px;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-size:14px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#8b4a2f;
+}
+
+.book-btn{
+    text-decoration:none;
+    background:#8b4a2f;
+    color:white;
+    padding:12px 22px;
+    border-radius:3px;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    padding-top:78px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.hero-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:70px 8%;
+}
+
+.hero-label{
+    color:#8b4a2f;
+    letter-spacing:4px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:clamp(50px,6vw,82px);
+    line-height:1.05;
+    margin:22px 0;
+}
+
+.hero h1 span{
+    color:#8b4a2f;
+    font-style:italic;
+}
+
+.hero p{
+    max-width:500px;
+    color:#666;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.hero-buttons{
+    margin-top:32px;
+    display:flex;
+    gap:15px;
+}
+
+.primary{
+    background:#8b4a2f;
+    color:white;
+    padding:15px 27px;
+    text-decoration:none;
+}
+
+.secondary{
+    border:1px solid #8b4a2f;
+    color:#8b4a2f;
+    padding:15px 27px;
+    text-decoration:none;
+}
+
+.hero-image{
+    background:
+    linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.2)),
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4")
+    center/cover;
+}
+
+/* ================= COMMON ================= */
+
+.section{
+    padding:100px 25px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-heading span{
+    color:#8b4a2f;
+    font-size:12px;
+    letter-spacing:4px;
+    font-weight:bold;
+}
+
+.section-heading h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    margin-top:12px;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.about-image{
+    height:500px;
+    background:
+    url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0")
+    center/cover;
+}
+
+.about-text span{
+    color:#8b4a2f;
+    letter-spacing:3px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.about-text h2{
+    font-family:Georgia,serif;
+    font-size:45px;
+    margin:15px 0 25px;
+}
+
+.about-text p{
+    color:#666;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+.stats{
+    display:flex;
+    gap:45px;
+    margin-top:35px;
+}
+
+.stats h3{
+    font-family:Georgia,serif;
+    font-size:30px;
+    color:#8b4a2f;
+}
+
+.stats p{
+    font-size:12px;
+    margin:3px 0;
+}
+
+/* ================= MENU ================= */
+
+.menu-section{
+    background:#211c18;
+    color:white;
+}
+
+.menu-section .section-heading span{
+    color:#d5a06a;
+}
+
+.menu-section .section-heading h2{
+    color:white;
+}
+
+.categories{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+
+.category{
+    background:transparent;
+    border:1px solid #675b51;
+    color:#ddd;
+    padding:10px 20px;
+    cursor:pointer;
+    border-radius:20px;
+}
+
+.category.active,
+.category:hover{
+    background:#b76e42;
+    border-color:#b76e42;
+    color:white;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.menu-card{
+    background:#2c2520;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.menu-card:hover{
+    transform:translateY(-7px);
+}
+
+.menu-img{
+    height:220px;
+    background-size:cover;
+    background-position:center;
+}
+
+.menu-content{
+    padding:22px;
+}
+
+.menu-content h3{
+    font-family:Georgia,serif;
+    font-size:22px;
+}
+
+.menu-content p{
+    color:#aaa;
+    font-size:14px;
+    line-height:1.6;
+    margin:10px 0;
+}
+
+.menu-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    color:#d5a06a;
+    font-weight:bold;
+    font-size:19px;
+}
+
+.order{
+    background:#b76e42;
+    border:none;
+    color:white;
+    padding:8px 14px;
+    cursor:pointer;
+}
+
+/* ================= SIGNATURE ================= */
+
+.signature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    background:#e8ded2;
+}
+
+.signature-image{
+    min-height:500px;
+    background:
+    url("https://images.unsplash.com/photo-1547592180-85f173990554")
+    center/cover;
+}
+
+.signature-content{
+    padding:80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.signature-content span{
+    color:#8b4a2f;
+    letter-spacing:3px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.signature-content h2{
+    font-family:Georgia,serif;
+    font-size:48px;
+    margin:15px 0;
+}
+
+.signature-content p{
+    color:#666;
+    line-height:1.8;
+}
+
+.signature-price{
+    color:#8b4a2f;
+    font-size:25px;
+    font-weight:bold;
+    margin-top:25px;
+}
+
+/* ================= RESERVATION ================= */
+
+.reservation{
+    background:#f0ebe5;
+}
+
+.reservation-box{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:45px;
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:15px;
+    border:1px solid #d6cec5;
+    background:#faf9f7;
+    outline:none;
+    font-size:14px;
+}
+
+textarea{
+    margin-top:20px;
+    height:120px;
+    resize:none;
+}
+
+.submit-btn{
+    margin-top:20px;
+    width:100%;
+    padding:16px;
+    border:none;
+    background:#8b4a2f;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* ================= TESTIMONIAL ================= */
+
+.testimonials{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.review{
+    background:white;
+    padding:30px;
+    border:1px solid #e0d9d1;
+}
+
+.stars{
+    color:#b76e42;
+    letter-spacing:3px;
+}
+
+.review p{
+    color:#666;
+    line-height:1.7;
+    margin:15px 0;
+    font-style:italic;
+}
+
+.review h4{
+    color:#8b4a2f;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#171310;
+    color:white;
+    padding:65px 25px 25px;
+}
+
+.footer-grid{
+    max-width:1150px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-logo{
+    font-family:Georgia,serif;
+    color:#d5a06a;
+    font-size:35px;
+}
+
+footer p{
+    color:#999;
+    line-height:1.8;
+    margin-top:12px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer a{
+    display:block;
+    color:#999;
+    text-decoration:none;
+    margin:10px 0;
+}
+
+footer a:hover{
+    color:#d5a06a;
+}
+
+.copyright{
+    max-width:1150px;
+    margin:50px auto 0;
+    padding-top:20px;
+    border-top:1px solid #302923;
+    text-align:center;
+    color:#666;
+    font-size:13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-image{
+        min-height:400px;
+    }
+
+    .about,
+    .signature{
+        grid-template-columns:1fr;
+    }
+
+    .menu-grid,
+    .testimonials{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .menu-grid,
+    .testimonials,
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-content{
+        padding:60px 25px;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+    .signature-content{
+        padding:50px 25px;
+    }
+
+    .stats{
+        gap:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="nav-container">
+
+<div class="logo">
+SP
+<small>SIGNATURE PLATE</small>
+</div>
+
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#story">Our Story</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<a href="#reservation" class="book-btn">
+Reserve
+</a>
+
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="hero-label">
+SIGNATURE PLATE • EST. 2026
+</div>
+
+<h1>
+Where Every<br>
+Plate Becomes<br>
+<span>A Memory.</span>
+</h1>
+
+<p>
+Welcome to SP — Signature Plate, where carefully
+crafted cuisine meets elegant dining. Discover
+flavours designed to be remembered.
+</p>
+
+<div class="hero-buttons">
+<a href="#menu" class="primary">
+Explore Menu
+</a>
+
+<a href="#reservation" class="secondary">
+Book a Table
+</a>
+</div>
+
+</div>
+
+<div class="hero-image"></div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section class="section" id="story">
+
+<div class="container">
+
+<div class="about">
+
+<div class="about-image"></div>
+
+<div class="about-text">
+
+<span>THE SP STORY</span>
+
+<h2>Crafted With Purpose.</h2>
+
+<p>
+SP stands for <strong>Signature Plate</strong> — a
+restaurant concept built around one simple belief:
+every dish should have its own identity.
+</p>
+
+<p>
+From carefully selected ingredients to thoughtful
+presentation, our kitchen creates food that connects
+tradition with modern dining.
+</p>
+
+<div class="stats">
+
+<div>
+<h3>20+</h3>
+<p>Signature Dishes</p>
+</div>
+
+<div>
+<h3>4.9</h3>
+<p>Guest Rating</p>
+</div>
+
+<div>
+<h3>100%</h3>
+<p>Fresh Ingredients</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="section menu-section" id="menu">
+
+<div class="container">
+
+<div class="section-heading">
+
+<span>FROM OUR KITCHEN</span>
+
+<h2>Signature Menu</h2>
+
+</div>
+
+
+<div class="categories">
+
+<button class="category active" onclick="filterMenu('all',this)">
+All
+</button>
+
+<button class="category" onclick="filterMenu('starter',this)">
+Starters
+</button>
+
+<button class="category" onclick="filterMenu('main',this)">
+Main Course
+</button>
+
+<button class="category" onclick="filterMenu('dessert',this)">
+Desserts
+</button>
+
+</div>
+
+
+<div class="menu-grid">
+
+
+<div class="menu-card" data-category="starter">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1547592180-85f173990554')">
+</div>
+
+<div class="menu-content">
+
+<h3>Garden Bruschetta</h3>
+
+<p>
+Toasted artisan bread with tomato,
+basil and olive oil.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹220</span>
+
+<button class="order"
+onclick="addItem('Garden Bruschetta')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-card" data-category="main">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1551183053-bf91a1d81141')">
+</div>
+
+<div class="menu-content">
+
+<h3>Truffle Pasta</h3>
+
+<p>
+Handmade pasta with creamy truffle
+sauce and parmesan.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹390</span>
+
+<button class="order"
+onclick="addItem('Truffle Pasta')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-card" data-category="main">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38')">
+</div>
+
+<div class="menu-content">
+
+<h3>SP Artisan Pizza</h3>
+
+<p>
+Stone-baked pizza with fresh herbs
+and premium cheese.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹420</span>
+
+<button class="order"
+onclick="addItem('SP Artisan Pizza')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-card" data-category="starter">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1547592180-85f173990554')">
+</div>
+
+<div class="menu-content">
+
+<h3>Crispy Corn</h3>
+
+<p>
+Crunchy golden corn tossed in our
+signature house seasoning.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹190</span>
+
+<button class="order"
+onclick="addItem('Crispy Corn')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-card" data-category="dessert">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1565958011703-44f9829ba187')">
+</div>
+
+<div class="menu-content">
+
+<h3>Berry Cheesecake</h3>
+
+<p>
+Creamy cheesecake finished with
+fresh seasonal berries.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹240</span>
+
+<button class="order"
+onclick="addItem('Berry Cheesecake')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="menu-card" data-category="dessert">
+
+<div class="menu-img"
+style="background-image:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587')">
+</div>
+
+<div class="menu-content">
+
+<h3>Chocolate Royale</h3>
+
+<p>
+Rich chocolate layers with a smooth
+velvety centre.
+</p>
+
+<div class="menu-bottom">
+
+<span class="price">₹260</span>
+
+<button class="order"
+onclick="addItem('Chocolate Royale')">
+Add
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SIGNATURE EXPERIENCE -->
+
+<section class="signature" id="experience">
+
+<div class="signature-image"></div>
+
+<div class="signature-content">
+
+<span>CHEF'S CREATION</span>
+
+<h2>The SP Signature Bowl</h2>
+
+<p>
+A carefully balanced combination of seasonal
+vegetables, aromatic herbs, premium grains and
+our house-made signature dressing.
+</p>
+
+<div class="signature-price">
+₹320
+</div>
+
+</div>
+
+</section>
+
+
+<!-- RESERVATION -->
+
+<section class="section reservation" id="reservation">
+
+<div class="section-heading">
+
+<span>YOUR TABLE AWAITS</span>
+
+<h2>Make a Reservation</h2>
+
+</div>
+
+<div class="reservation-box">
+
+<form id="bookingForm">
+
+<div class="form-grid">
+
+<input
+type="text"
+placeholder="Full Name"
+required
+>
+
+<input
+type="email"
+placeholder="Email Address"
+required
+>
+
+<input
+type="date"
+required
+>
+
+<input
+type="time"
+required
+>
+
+<select required>
+
+<option value="">
+Number of Guests
+</option>
+
+<option>1 Guest</option>
+<option>2 Guests</option>
+<option>3 Guests</option>
+<option>4 Guests</option>
+<option>5 Guests</option>
+<option>6+ Guests</option>
+
+</select>
+
+<input
+type="tel"
+placeholder="Phone Number"
+required
+>
+
+</div>
+
+<textarea
+placeholder="Any special requests?"
+></textarea>
+
+<button class="submit-btn" type="submit">
+Confirm Reservation
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+<!-- REVIEWS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="section-heading">
+
+<span>GUEST EXPERIENCES</span>
+
+<h2>What They Say</h2>
+
+</div>
+
+<div class="testimonials">
+
+<div class="review">
+
+<div class="stars">★★★★★</div>
+
+<p>
+"The food presentation was beautiful and
+every dish had a unique flavour."
+</p>
+
+<h4>— Ananya R.</h4>
+
+</div>
+
+
+<div class="review">
+
+<div class="stars">★★★★★</div>
+
+<p>
+"SP feels elegant without being uncomfortable.
+A wonderful place for dinner."
+</p>
+
+<h4>— Rahul M.</h4>
+
+</div>
+
+
+<div class="review">
+
+<div class="stars">★★★★★</div>
+
+<p>
+"The Signature Bowl and cheesecake were
+absolutely memorable."
+</p>
+
+<h4>— Priya S.</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+<div class="footer-grid">
+
+<div>
+
+<div class="footer-logo">SP.</div>
+
+<p>
+Signature Plate — where every plate
+becomes a memory.
+</p>
+
+<p>
+📍 Nellore, Andhra Pradesh
+</p>
+
+</div>
+
+
+<div>
+
+<h3>Explore</h3>
+
+<a href="#home">Home</a>
+<a href="#story">Our Story</a>
+<a href="#menu">Menu</a>
+<a href="#reservation">Reservations</a>
+
+</div>
+
+
+<div>
+
+<h3>Contact</h3>
+
+<p>+91 98765 43210</p>
+<p>hello@signatureplate.com</p>
+<p>Mon – Sun: 11 AM – 11 PM</p>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 SP — Signature Plate. All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* MENU FILTER */
+
+function filterMenu(category, button){
+
+    let cards =
+    document.querySelectorAll(".menu-card");
+
+    let buttons =
+    document.querySelectorAll(".category");
+
+    buttons.forEach(btn =>
+        btn.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    cards.forEach(card => {
+
+        if(category === "all" ||
+           card.dataset.category === category){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ADD ITEM */
+
+function addItem(item){
+
+    alert(
+        item +
+        " has been added to your selection!"
+    );
+
+}
+
+
+/* RESERVATION */
+
+document
+.getElementById("bookingForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    alert(
+        "Reservation request received! 🍽️\n\n" +
+        "Thank you for choosing SP — Signature Plate."
+    );
+
+    this.reset();
+
+});
+
+</script>
+
+</body>
+</html>
